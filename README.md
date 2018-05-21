@@ -1,2 +1,2 @@
 # weatherapp
-Local Weather App
+Local Weather App made using javascript.

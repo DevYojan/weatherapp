@@ -1,12 +1,14 @@
 $(document).ready(function(){
 	
+	$('#message').html("Please allow the application to access your location.");
+
 	if (navigator.geolocation) {
 		
 		navigator.geolocation.getCurrentPosition(function(position) {
 
 			$.getJSON('https://fcc-weather-api.glitch.me/api/current?lat='+
 			position.coords.latitude+'&lon='+position.coords.longitude, function(json){
-				console.log(json);
+				$('#message').remove();
 				$('#location').html(json.name + ', ' + json.sys.country);
 				$('#icon').html("<img src="+json.weather[0].icon+'" id="image">');
 				$('#temp').html("<span id='degree'>" + json.main.temp + "</span> &deg; "
@@ -38,7 +40,5 @@ $(document).ready(function(){
 				});
 			});
 		});
-	} else {
-		$('#message').html("Please allow the application to access your location.");
 	}
 });
